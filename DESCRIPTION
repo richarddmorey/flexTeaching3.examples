@@ -10,7 +10,11 @@ License: Mozilla Public License 2.0
 Encoding: UTF-8
 Imports: 
     Cairo,
-    knitr
+    knitr,
+    DiagrammeR,
+    DiagrammeRsvg,
+    rsvg,
+    flexTeaching3.api
 RoxygenNote: 7.2.3
 Depends: 
     R (>= 4.2.0)

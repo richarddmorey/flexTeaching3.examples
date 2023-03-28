@@ -12,11 +12,6 @@ params:
       data_salt: qt2egamos21mt8iv2kbr
       hide_before: 10:13 2023-03-28
       restrict_before: 10:13 2023-03-28
-      files:
-        assignment_data.csv:
-          label: Data
-          icon: 'fa-solid fa-lg fa-file'
-          filename: flexTeaching3.api::ft3_create_filename
 ---
 
 ```{r setup, include=FALSE}
@@ -34,27 +29,91 @@ knitr::opts_template$set(solutions = list(
   )
 )
 
-# Replace this with your random data; it will be served if you 
-# keep the files: settings in the YAML header
-my_data = sleep
-write.csv(my_data, 'assignment_data.csv', row.names = FALSE)
-
 ```
 
-## This is an example section.
+`flexTeaching3` is (in part) a random seed management software; given the inputs from the interface, it creates a unique seed and serves a document that is based on that unique random seed. Every time we run the same assignment with the same seed, we should get the same result.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed nulla neque. Integer et nisi at lectus tristique auctor quis in diam. Duis ullamcorper felis id varius mattis. Praesent vitae posuere metus. Nulla facilisi. Suspendisse potenti. Morbi sit amet libero orci. Vestibulum vestibulum turpis at nulla pulvinar, quis placerat justo suscipit. 
+The introduction of conditionally-evaluated code chunks, however, complicates this. When we request the solutions, generally, there will be some code chunks that will be run that *would not* have been run if we did not request the solutions. This is good; it allows the assignments without solutions to be served faster because not everything has to be computed until we request the solutions.
 
-```{r opts.label='solutions'}
+If we were to sample random numbers --- or run any function that samples random numbers in background, even unbeknownst to us --- in a solutions chunk, then the random seed for any *later* samples will be different from if we hadn't run that solutions chunk, because the random seed is changed after every sample. This would be potentially disastrous; any solutions might not be correct.
 
-boxplot(extra ~ group, data = my_data)
+```{r fig.cap="How including an intervening chunk can change the random seed state, assuming its code uses the random number generator somehow."}
+DiagrammeR::grViz(diagram = 'gv/seeds.gv',width = 700, height=500) 
 ```
 
-## Another example section
+There are several ways around this:
 
-\[
-\bar{X} = \frac{1}{N}\sum_{i=1}^N X_i
-\]
+* **Do not sample in conditionally-evaluated blocks**, and only sample *before* any conditionally-evaluated blocks. For instance, generate any random data that will be downloaded by students in a setup block before all other content.
+* Use a special hook in the `flexTeaching.api` package to **reset the random seed** after the chunk is done running.
+* **Always generate random chunks; display them only when needed**. If the random chunks are always executed, then every chunk will always have the same random state. This is undesireable, though, in situations where the optional chunks take time to execute.
 
-Mauris nec elementum quam. Fusce egestas est tincidunt nulla hendrerit dictum. Donec lobortis, libero et sagittis scelerisque, ex ex vestibulum tortor, sit amet condimentum ipsum lacus id turpis. Cras et nunc porttitor, mollis tortor ac, tincidunt enim. Nunc turpis ex, porta porttitor magna in, gravida blandit neque. Sed convallis tristique nunc sit amet efficitur. Nunc auctor sapien nec dolor congue, a ornare ex tempus. 
+## Resetting the random seed
+
+
+### Block 1
+
+```{r}
+rnorm(1)
+```
+
+
+```{r opts.label='solutions', child="children/solutions1.Rmd", ft3_seed_status="reset"}
+```
+
+### Block 2
+
+```{r}
+rnorm(1)
+```
+
+
+## Running chunks but not including them
+
+We can also execute solution chunks, but not *include* them when we're not showing the solutions. This has the downside of running unnecessary code, which may be time consuming.
+
+### Block 3
+
+```{r}
+rnorm(1)
+```
+
+
+```{r include = params$flexTeaching_pars$solutions, results='asis'}
+## The "include" option is incompatible with the "child" option, 
+## so we use knit_child and 'asis' output instead.
+knitr::knit_child(
+  "children/solutions2.Rmd",
+  quiet=TRUE,
+  envir = environment() # include the current environment
+  ) |>
+  cat()
+```
+
+### Block 4
+
+```{r}
+rnorm(1)
+```
+
+
+## The wrong way: showing the problem
+
+### Block 5
+
+```{r}
+rnorm(1)
+```
+
+
+```{r opts.label='solutions', child="children/solutions3.Rmd"}
+```
+
+### Block 6
+
+The random number below will have a value that depends on whether solutions are displayed. 
+
+```{r }
+rnorm(1)
+```
+
 
