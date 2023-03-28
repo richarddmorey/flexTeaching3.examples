@@ -1,0 +1,16 @@
+Package: flexTeaching3.examples
+Type: Package
+Title: Examples of flexTeaching3 assignments
+Version: 0.1
+Date: 2022-03-27
+Author: Richard D. Morey
+Maintainer: Richard D. Morey <richarddmorey@gmail.com>
+Description: A set of examples showing how to build flexTeaching3 assignments 
+License: Mozilla Public License 2.0
+Encoding: UTF-8
+Imports: 
+    Cairo,
+    knitr
+RoxygenNote: 7.2.3
+Depends: 
+    R (>= 4.2.0)
