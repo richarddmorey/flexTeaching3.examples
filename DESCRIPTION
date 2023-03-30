@@ -15,7 +15,10 @@ Imports:
     DiagrammeRsvg,
     rsvg,
     flexTeaching3.api,
-    jdenticon
+    jdenticon,
+    import,
+    ggplot2,
+    dplyr
 RoxygenNote: 7.2.3
 Depends: 
     R (>= 4.2.0)

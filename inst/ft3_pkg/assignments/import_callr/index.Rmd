@@ -7,12 +7,11 @@ params:
       solutions: true
   flexTeaching:
     value:
-      menu: Using the import package
-      seed_salt: z5xbidx79xrwq8tw6x0az
-      data_salt: a038ef1vp2s4vj2cyn58b
+      menu: Using the import package (using callr)
+      seed_salt: 5xbidx79xrwq8tw6x0az
+      data_salt: 038ef1vp2s4vj2cyn58b
       hide_before: 10:13 2023-03-28
       restrict_before: 10:13 2023-03-28
-      use_callr: false
       files:
         assignment_data.csv:
           label: Data
@@ -42,7 +41,7 @@ write.csv(my_data, 'assignment_data.csv', row.names = FALSE)
 
 ```
 
-**To see the slow-down from using `callr`, see the "Using the import package (using callr)" assignment.**
+**To see the speed-up from not using `callr`, see the "Using the import package assignment".**
 
 Two things can make document compilation slow: rendering a full document (e.g., with `html_document` instead of `html_fragment`) and the default use of the [`callr`](https://callr.r-lib.org/) package to render documents in their own R process. The use of `callr` is for safety: the compilation of the document cannot affect the main R process if everything is compiled in a separate process. This slows compilation down, but makes it safer.
 

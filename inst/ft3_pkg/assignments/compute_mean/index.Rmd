@@ -1,0 +1,46 @@
+---
+title: Compute the mean
+output: html_document
+params:
+  flexTeaching_pars:
+    value:
+      solutions: true
+  flexTeaching:
+    value:
+      menu: Compute the mean
+      seed_salt: 81nm2c8ciixuxxom2b2o
+      data_salt: b2fpo47frdqft1m7peai
+      files:
+        assignment_data.txt:
+          label: Data
+          icon: 'fa-solid fa-lg fa-file'
+          filename: flexTeaching3.api::ft3_create_filename
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE
+  , dev = "png"
+  , dpi = 300
+  , out.width = ifelse(knitr::is_latex_output(), '.8\\linewidth', '80%')
+  )
+
+# For convenience; we use this options template to flag solutions blocks
+knitr::opts_template$set(solutions = list(
+  eval    = params$flexTeaching_pars$solutions, 
+  include = params$flexTeaching_pars$solutions
+  )
+)
+
+```
+
+```{r echo=FALSE}
+N <- 4
+y <- sample.int(100, size = N)
+cat(y, '\n', file = 'assignment_data.txt')
+```
+
+Compute the mean of `r knitr::combine_words(y)`.
+
+```{r opts.label='solutions', child='solution.Rmd'}
+```
