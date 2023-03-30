@@ -1,0 +1,29 @@
+---
+title: A hidden document
+output: html_fragment
+params:
+  flexTeaching_pars:
+    value:
+      solutions: true
+  flexTeaching:
+    value:
+      menu: A hidden document
+      category: examples
+      seed_salt: 0i07gc8ie16dp0n6epku
+      data_salt: qspjx0k1y2vg5h5fylo4
+      hide_before: 09:32 2099-03-28
+---
+
+This document is hidden, but not restricted. You can access it if you have a special link that adds it to the menu. It will only appear in the menu if you accessed it via such a link. You build a link, you use (for example):
+
+```
+http://URL_EXAMPLE/ft3/interface.html?assignment=DIRECTORY
+```
+
+where `DIRECTORY` is the directory containing the assignment. If you've included spaces or other special characters in the directory name, you'll need to `URLencode()` it before putting it in the link:
+
+```{r}
+URLencode('my assignment directory')
+```
+
+See https://en.wikipedia.org/wiki/URL_encoding for more detail.

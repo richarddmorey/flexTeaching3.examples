@@ -1,0 +1,39 @@
+---
+title: javascript on_load example
+output: html_fragment
+params:
+  flexTeaching_pars:
+    value:
+      solutions: true
+  flexTeaching:
+    value:
+      menu: javascript on_load example
+      seed_salt: ifx60q1th7joxa3mx7et
+      data_salt: 21in0vpwi1ijmcb6ovwp
+      on_load: |
+        console.log('Javascript is being executed.');
+        setTimeout(_ => {
+          $('#js_ex_p').fadeOut(5000);
+        }, 10000);
+        
+      
+---
+
+*(This page solves an issue with `html_fragments`; javascript is not an issue for `html_documents` because are complete pages they get loaded in a special iframe).*
+
+Most javascript libraries that change the rendering on the page --- for instance, [MathJax]() --- will run when the web page initially loads. The loading of the page triggers an event that tells the library to render the bits of the page for which it is responsible. MathJax will turn the LaTeX code in the page into rendered math; a plotting library might convert the data into a nice interactive graph; or a slideshow program will take particular images and turn them into an interactive slideshow.
+
+However, with `html_fragment` documents, the page isn't reloaded; instead, the contents of an assignment are injected into a part of the `flexTeaching3` interface. Any javascript that needs to run must to told to run at that point, because it is typically long after the page is initially loaded.
+
+Here's what you need to do:
+
+1. Make sure the necessary javascript and css are included in the main interface. You can do this by including the required code in your assignment package under `inst/ft3_package/support/headers.html`. (Incedentally, anything under `inst/ft3_package/support` will be statically served by flexTeaching3, so you can put javascript and css files there if you like)
+
+2. In the assignment settings, use the `on_load` option to include any javascript you'd like to be run when the assignment loads (use [multiline syntax](https://yaml-multiline.info/)). You can use jQuery; this is included by default in the `flexTeaching3` interface.
+
+This example has some simple javascript included. The text should start to fade out 10 seconds after the assignment is loaded. It will take another 5 seconds for it to disappear completely.
+
+<p id='js_ex_p'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris interdum velit sit amet orci pellentesque, congue auctor metus cursus. Maecenas sit amet molestie eros, eget congue libero. In viverra, dui non porta pulvinar, metus tellus tempor ligula, non venenatis nisl augue quis dolor. Vestibulum ultricies sit amet nisi vel auctor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus pellentesque justo vitae rutrum maximus. Vestibulum volutpat sit amet felis a rutrum. Morbi in venenatis tortor. </p>
+
+You can use javascript to manipulate the page in any way you like.
+

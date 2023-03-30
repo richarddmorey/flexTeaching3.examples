@@ -1,0 +1,21 @@
+---
+title: Hidden documents
+output: html_fragment
+params:
+  flexTeaching_pars:
+    value:
+      solutions: true
+  flexTeaching:
+    value:
+      menu: Hidden documents
+      category: examples
+      seed_salt: qspjx0k1y2vg5h5fylo4
+      data_salt: 0i07gc8ie16dp0n6epku
+---
+
+Documents can be hidden with the `hide_before` option.  will be left out of the menu until the date passes. Documents that are hidden can still be accessed (provided they are not also restricted by `restrict_before`). The link below will reveal the hidden document in the menu:
+
+<a href='interface.html?assignment=hidden_docs_2'>Add `hidden_docs_2` to the menu.</a>
+
+Click it to read more about hidden assignments.
+

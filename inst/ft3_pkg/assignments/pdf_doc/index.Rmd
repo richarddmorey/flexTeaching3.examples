@@ -1,15 +1,15 @@
 ---
-title: html_document example
-output: html_document
+title: pdf_document example
+output: pdf_document
 params:
   flexTeaching_pars:
     value:
       solutions: true
   flexTeaching:
     value:
-      menu: html_document example
-      seed_salt: d54srxesjsxdpqepmhsy
-      data_salt: dg2ylzxk1ad8x013qrrf
+      menu: pdf_document example
+      seed_salt: ci9t819m5iamj5punxss
+      data_salt: s2sqdi3yy9h3smcco48j
       hide_before: 09:32 2023-03-28
       restrict_before: 09:32 2023-03-28
       files:
@@ -39,6 +39,21 @@ knitr::opts_template$set(solutions = list(
 my_data = sleep
 write.csv(my_data, 'assignment_data.csv', row.names = FALSE)
 
+```
+
+The following useful values have been passed into the document via `params$`. In practice, you'll typically only need to use `params$flexTeaching_pars$solutions` (but see the jdenticon example).
+
+```{r}
+params$flexTeaching_pars |> 
+  Filter(Negate(is.null), x = _) |>
+  stack() -> pars
+
+pars <- pars[,c(2,1)]
+colnames(pars) = c('Name', 'Value')
+pars[,1] = paste0('`params$flexTeaching_pars$', pars[,1],'`')
+
+pars |>
+  knitr::kable()
 ```
 
 ## This is an example section.

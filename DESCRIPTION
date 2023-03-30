@@ -14,7 +14,8 @@ Imports:
     DiagrammeR,
     DiagrammeRsvg,
     rsvg,
-    flexTeaching3.api
+    flexTeaching3.api,
+    jdenticon
 RoxygenNote: 7.2.3
 Depends: 
     R (>= 4.2.0)

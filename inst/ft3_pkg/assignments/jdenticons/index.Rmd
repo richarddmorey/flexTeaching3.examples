@@ -41,6 +41,16 @@ write.csv(my_data, 'assignment_data.csv', row.names = FALSE)
 
 ```
 
+We can produce a <a href='https://jdenticon.com/' target='_blank'>jdenticon</a> matching the one in the interface by using the `jdenticon::jdenticon()` function and the fingerprint in `params$flexTeaching_pars$fingerprint`:
+
+```{r}
+params$flexTeaching_pars$fingerprint |>
+  jdenticon::jdenticon() |>
+  knitr::include_graphics()
+```
+
+This is especially useful for PDF documents, where the user might download the document and want to verify later that they have downloaded the correct one. 
+
 ## This is an example section.
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed nulla neque. Integer et nisi at lectus tristique auctor quis in diam. Duis ullamcorper felis id varius mattis. Praesent vitae posuere metus. Nulla facilisi. Suspendisse potenti. Morbi sit amet libero orci. Vestibulum vestibulum turpis at nulla pulvinar, quis placerat justo suscipit. 

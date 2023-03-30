@@ -41,6 +41,21 @@ write.csv(my_data, 'assignment_data.csv', row.names = FALSE)
 
 ```
 
+The following useful values have been passed into the document via `params$`. In practice, you'll typically only need to use `params$flexTeaching_pars$solutions` (but see the jdenticon example).
+
+```{r}
+params$flexTeaching_pars |> 
+  Filter(Negate(is.null), x = _) |>
+  stack() -> pars
+
+pars <- pars[,c(2,1)]
+colnames(pars) = c('Name', 'Value')
+pars[,1] = paste0('`params$flexTeaching_pars$', pars[,1],'`')
+
+pars |>
+  knitr::kable()
+```
+
 ## This is an example section.
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed nulla neque. Integer et nisi at lectus tristique auctor quis in diam. Duis ullamcorper felis id varius mattis. Praesent vitae posuere metus. Nulla facilisi. Suspendisse potenti. Morbi sit amet libero orci. Vestibulum vestibulum turpis at nulla pulvinar, quis placerat justo suscipit. 
