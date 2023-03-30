@@ -61,7 +61,11 @@ my_data %>%
     se   = sd(extra)/sqrt(n)
     ) -> summaries
 
-knitr::kable(summaries)
+import::here(kbl, kable_styling, .from='kableExtra')
+
+summaries |>
+  kbl() |>
+  kable_styling()
 ```
 
 This will only solve one potential problem use turning off `callr` for an assignment; you also have to be cautious of [non-thread-safe code](https://github.com/rexyai/RestRserve/issues/195#issuecomment-1312577727). 

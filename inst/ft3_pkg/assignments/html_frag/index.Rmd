@@ -39,6 +39,8 @@ knitr::opts_template$set(solutions = list(
 my_data = sleep
 write.csv(my_data, 'assignment_data.csv', row.names = FALSE)
 
+import::here(kbl, kable_styling, .from='kableExtra')
+
 ```
 
 The following useful values have been passed into the document via `params$`. In practice, you'll typically only need to use `params$flexTeaching_pars$solutions` (but see the jdenticon example).
@@ -53,7 +55,8 @@ colnames(pars) = c('Name', 'Value')
 pars[,1] = paste0('`params$flexTeaching_pars$', pars[,1],'`')
 
 pars |>
-  knitr::kable()
+  kbl() |>
+  kable_styling()
 ```
 
 ## This is an example section.

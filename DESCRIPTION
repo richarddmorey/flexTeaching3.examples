@@ -18,7 +18,8 @@ Imports:
     jdenticon,
     import,
     ggplot2,
-    dplyr
+    dplyr,
+    kableExtra
 RoxygenNote: 7.2.3
 Depends: 
     R (>= 4.2.0)
