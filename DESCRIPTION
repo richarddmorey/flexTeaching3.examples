@@ -19,7 +19,8 @@ Imports:
     import,
     ggplot2,
     dplyr,
-    kableExtra
+    kableExtra,
+    rsvg
 RoxygenNote: 7.2.3
 Depends: 
     R (>= 4.2.0)

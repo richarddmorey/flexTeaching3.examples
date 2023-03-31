@@ -43,10 +43,18 @@ write.csv(my_data, 'assignment_data.csv', row.names = FALSE)
 
 We can produce a <a href='https://jdenticon.com/' target='_blank'>jdenticon</a> matching the one in the interface by using the `jdenticon::jdenticon()` function and the fingerprint in `params$flexTeaching_pars$fingerprint`:
 
-```{r}
+```{r jdenticon}
 params$flexTeaching_pars$fingerprint |>
-  jdenticon::jdenticon() |>
-  knitr::include_graphics()
+  jdenticon::jdenticon(type='svg') -> fn_svg
+
+# Convert to PDF
+fn_pdf <- flexTeaching3.api::ft3_replace_file_ext(fn_svg, 'pdf')
+rsvg::rsvg_pdf(fn_svg, fn_pdf)
+
+# Include the PDF if we're outputting latex
+knitr::include_graphics(
+  ifelse(knitr::is_latex_output(), fn_pdf, fn_svg)
+)
 ```
 
 This is especially useful for PDF documents, where the user might download the document and want to verify later that they have downloaded the correct one. 
