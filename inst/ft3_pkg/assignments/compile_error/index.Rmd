@@ -1,0 +1,20 @@
+---
+title: Document with error
+output: html_fragment
+params:
+  flexTeaching_pars:
+    value:
+      solutions: true
+  flexTeaching:
+    value:
+      menu: Document with error
+      category: examples
+      seed_salt: 0i07gc8ie16dp0n6epku
+      data_salt: qspjx0k1y2vg5h5fylo4
+---
+
+This document only exists to show what happens when the compilation of a document causes an error.
+
+```{r}
+stop('This error was intentionally generated.')
+```
