@@ -11,6 +11,7 @@ params:
       category: examples
       seed_salt: 0i07gc8ie16dp0n6epku
       data_salt: qspjx0k1y2vg5h5fylo4
+      sortkey: zzz
 ---
 
 This document only exists to show what happens when the compilation of a document causes an error.
