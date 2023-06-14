@@ -1,8 +1,6 @@
 ---
 title: Quiz using surveyjs
-output: 
-  html_document:
-    self_contained: false
+output: html_document
 params:
   flexTeaching_pars:
     value:
