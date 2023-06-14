@@ -24,7 +24,8 @@ Imports:
     sjPlot,
     surveyjsR,
     MASS,
-    htmltools
+    htmltools,
+    jdenticon
 RoxygenNote: 7.2.3
 Depends: 
     R (>= 4.2.0)
