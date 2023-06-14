@@ -24,8 +24,10 @@ Imports:
     sjPlot,
     surveyjsR,
     MASS,
-    htmltools,
-    jdenticon
+    htmltools
 RoxygenNote: 7.2.3
 Depends: 
     R (>= 4.2.0)
+Remotes: 
+    richarddmorey/surveyjsR,
+    richarddmorey/flexTeaching3.api
