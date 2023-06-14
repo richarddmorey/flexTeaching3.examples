@@ -20,7 +20,11 @@ Imports:
     ggplot2,
     dplyr,
     kableExtra,
-    rsvg
+    rsvg,
+    sjPlot,
+    surveyjsR,
+    MASS,
+    htmltools
 RoxygenNote: 7.2.3
 Depends: 
     R (>= 4.2.0)
