@@ -8,7 +8,7 @@ Maintainer: Richard D. Morey <richarddmorey@gmail.com>
 Description: A set of examples showing how to build flexTeaching3 assignments 
 License: Mozilla Public License 2.0
 Encoding: UTF-8
-Imports: 
+Suggests: 
     Cairo,
     knitr,
     DiagrammeR,
