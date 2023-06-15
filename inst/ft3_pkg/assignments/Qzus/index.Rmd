@@ -215,7 +215,9 @@ document.querySelector("body")
     // Rerender MathJax
     s.onAfterRenderQuestion.add((_, options) => {
       if(typeof MathJax !== 'undefined'){
-        MathJax.Hub.Queue(["Typeset",MathJax.Hub,options.htmlElement]);
+        setTimeout(()=>{
+          MathJax.Hub.Queue(["Typeset",MathJax.Hub,options.htmlElement]);
+        }, 250)
       }
     });
   }
